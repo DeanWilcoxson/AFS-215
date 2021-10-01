@@ -1,6 +1,5 @@
 class Fizzbuzz(object):
     # number = input("Please enter a number: ")
-#  = int(number)):
     def Solution(self, number):
         """
         :type number: int
@@ -25,13 +24,3 @@ class Fizzbuzz(object):
 
 # ob1 = Fizzbuzz()
 # print(ob1.Solution())
-
-# def printSolution(number):
-#     result = Fizzbuzz.Solution()
-#     for num in range(len(result)):
-#         if num == 'FizzBuzz':
-#             return("FizzBuzz")
-
-#         else:
-#             return('Not divisible by 3 or 5')
-# print(ob1.printSolution(15))
