@@ -1,26 +1,22 @@
 class Fizzbuzz(object):
-    # number = input("Please enter a number: ")
     def Solution(self, number):
-        """
-        :type number: int
-        :rtype: List[str]
-        """
-        # result = []
-        # for x in range(1, number + 1):
-        # print(number)
+        """:type number: int
+        :rtype: List[str]"""
         if number % 3 == 0 and number % 5 == 0:
+            print("FizzBuzz")
             return("FizzBuzz")
         elif number % 3 == 0:
+            print("Fizz")
             return("Fizz")
         elif number % 5 == 0:
+            print("Buzz")
             return("Buzz")
         elif number == 1:
+            print("1")
             return("1")
         elif number == 2:
+            print("2")
             return("2")
         else:
+            print(str(number))
             return(str(number))
-
-
-# ob1 = Fizzbuzz()
-# print(ob1.Solution())
