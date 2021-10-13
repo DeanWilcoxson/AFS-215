@@ -39,3 +39,4 @@ test_get_ten()
 def test_get_Fizzbuzz():
     fizzbuzz = Fizzbuzz().Solution(15)
     assert fizzbuzz == "FizzBuzz"
+test_get_Fizzbuzz()
