@@ -17,6 +17,8 @@ class Checkout:
         self.prices[item] = price
 
     def addItem(self, item):
+        if item not in self.prices:
+            raise Exception("No Price!")
         if item in self.items:
             self.items[item] += 1
         else:
@@ -25,13 +27,25 @@ class Checkout:
     def calculateTotal(self):
         total = 0
         for item, cnt in self.items.items():
-            if item in self.discounts:
-                discount = self.discounts[item]
-                if cnt >= discount.nbrItems:
-                    nbrOfDiscounts = cnt/discount.nbrItems
-                    total += nbrOfDiscounts * discount.price
-                else:
-                    total += self.prices[item] * cnt
+            total += self.calculateItemTotal(item, cnt)
+        return total
+
+    def calculateItemTotal(self, item, cnt):
+        total = 0
+        if item in self.discounts:
+            discount = self.discounts[item]
+            if cnt >= discount.nbrItems:
+                total += self.calculateItemDiscountedTotal(item, cnt, discount)
             else:
                 total += self.prices[item] * cnt
+        else:
+            total += self.prices[item] * cnt
+        return total
+
+    def calculateItemDiscountedTotal(self, item, cnt, discount):
+        total = 0
+        nbrOfDiscounts = cnt/discount.nbrItems
+        total += nbrOfDiscounts * discount.price
+        remaining = cnt % discount.nbrItems
+        total += remaining * self.prices[item]
         return total
