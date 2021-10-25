@@ -1,0 +1,16 @@
+{
+  "name": "Node_FizzBuzz_Kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fizzbuzz_kata.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3"
+  }
+}

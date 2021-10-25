@@ -1,6 +1,6 @@
 function Solution(number) {
     if ((number % 3 === 0) && (number % 5 === 0)) {
-        console.log(`FizzBuzz, ${number}`)
+        console.log(number)
         return ("FizzBuzz")
     } else if (number % 3 === 0) {
         console.log(`Fizz, ${number}`)
