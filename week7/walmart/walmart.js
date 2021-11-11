@@ -3,7 +3,7 @@ class Checkout {
     this.items = [];
     this.discounts = [];
   }
-  addItem = (name) => {
+  canAddItem = (name) => {
     let check = true;
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
@@ -17,8 +17,8 @@ class Checkout {
       return this.items[this.items.length - 1];
     }
   };
-  addItemPrice = (name, price) => {
-    this.addItem(name);
+  canAddItemPrice = (name, price) => {
+    this.canAddItem(name);
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
         this.items[i] = { name: name, price: price };
@@ -29,8 +29,16 @@ class Checkout {
       }
     }
   };
-  addDiscount = (discount, name, price) => {
-    this.addItem(name);
+  canCalculateCurrentTotal = () => {
+    let total = 0;
+    this.items.map((price) => {
+      total += price;
+      return total;
+    });
+  };
+  canAddMultipleItemsAndGetCorrectTotal = () => {};
+  canAddDiscountRule = (discount, name, price) => {
+    this.canAddItem(name);
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
         this.items[i] = { name: name, price: price - discount };
@@ -41,15 +49,7 @@ class Checkout {
     }
     return this.items[0].price;
   };
-  total = () => {
-    let total = 0;
-    this.items.map((price) => {
-      total += price;
-      return total;
-    });
-  };
-  addMultipleItems = ()=>{
-      
-  }
+  canApplyDiscountRulesToTotal = () => {};
+  exceptionIsThrownForItemAddedWithoutPrice = () => {};
 }
 module.exports = Checkout;
