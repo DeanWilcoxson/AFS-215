@@ -16,11 +16,13 @@ describe("Checkout", () => {
   });
   it("Can calculate the current total", () => {
     let cart = new checkout();
-    assert.equal(cart.canCalculateCurrentTotal());
+    cart.canAddItemPrice("a", 10);
+    cart.canAddItemPrice("b", 10);
+    assert.equal(cart.canCalculateCurrentTotal(), 20);
   });
   it("Can add multiple items and get correct total", () => {
     let cart = new checkout();
-    assert.equal();
+    assert.equal(cart.canAddMultipleItemsAndGetCorrectTotal());
   });
   it("Can add discount rules", () => {
     let cart = new checkout();
@@ -28,10 +30,14 @@ describe("Checkout", () => {
   });
   it("Can apply discount rules to the total", () => {
     let cart = new checkout();
-    assert.equal();
+    cart.canAddDiscountRule(5, "b", 10) 
+    cart.canAddItemPrice("c", 10)
+    assert.equal(cart.canCalculateCurrentTotal(), 15);
   });
   it("Exception is thrown for item added without a price", () => {
     let cart = new checkout();
-    assert.equal();
+    cart.canAddItemPrice("a", 10);
+    cart.canAddItemPrice("b");
+    assert.equal(cart.canCalculateCurrentTotal(), "No Item Price");
   });
 });

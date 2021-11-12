@@ -1,15 +1,14 @@
 class Checkout {
   constructor() {
     this.items = [];
-    this.discounts = [];
   }
   canAddItem = (name) => {
     let check = true;
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
         check = false;
-        errMsg = "Item already Exists";
-        throw Error(errMsg);
+        let errMsg = "Item already Exists";
+        return errMsg;
       }
     }
     if (check) {
@@ -21,35 +20,41 @@ class Checkout {
     this.canAddItem(name);
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
-        this.items[i] = { name: name, price: price };
+        this.items[i].price = price;
         return this.items;
-      } else {
-        errMsg = "No Item Price";
-        throw Error(errMsg);
       }
     }
   };
   canCalculateCurrentTotal = () => {
     let total = 0;
+    for (var i = 0; i < this.items.length; i++) {
+      var item = this.items[i];
+      if (!item.price) {
+        let errMsg = "No Item Price";
+        return errMsg;
+      } else {
+        total += item.price;
+      }
+    }
+    return total;
+  };
+  canAddMultipleItemsAndGetCorrectTotal = (name, price) => {
+    let total = 0;
+    this.canAddItemPrice(name, price);
+    this.canAddItemPrice(name, price);
     this.items.map((price) => {
       total += price;
       return total;
     });
   };
-  canAddMultipleItemsAndGetCorrectTotal = () => {};
   canAddDiscountRule = (discount, name, price) => {
     this.canAddItem(name);
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == name) {
         this.items[i] = { name: name, price: price - discount };
-      } else {
-        errMsg = "No Item Price";
-        throw Error(errMsg);
       }
     }
     return this.items[0].price;
   };
-  canApplyDiscountRulesToTotal = () => {};
-  exceptionIsThrownForItemAddedWithoutPrice = () => {};
 }
 module.exports = Checkout;
